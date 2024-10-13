@@ -1,0 +1,28 @@
+ version: '3'
+ services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: kepinserius
+      POSTGRES_PASSWORD: Kevinarjuda23.
+      POSTGRES_DB: anekaZoo
+    ports:
+      - "5470:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    ports:
+      - "5460:8080"
+    depends_on:
+      - db
+    environment:
+      DB_HOST: db
+      DB_USER: kepinserius
+      DB_PASSWORD: Kevinarjuda23.
+      DB_NAME: anekaZoo
+
+ volumes:
+  postgres-data:
+
