@@ -86,7 +86,7 @@ func getAnimal(w http.ResponseWriter, r *http.Request) {
 	var animal models.Animal
 	err := db.QueryRow("SELECT id, name, class, legs FROM animals WHERE id = $1", id).Scan(&animal.ID, &animal.Name, &animal.Class, &animal.Legs)
 	if err == sql.ErrNoRows {
-		http.Error(w, "Animal not found", http.StatusNotFound)
+		http.Error(w, "Hewan Tidak Ditemukan", http.StatusNotFound)
 		return
 	} else if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -117,7 +117,7 @@ func updateAnimal(w http.ResponseWriter, r *http.Request) {
 
 	count, _ := res.RowsAffected()
 	if count == 0 {
-		http.Error(w, "Animal not found", http.StatusNotFound)
+		http.Error(w, "Hewan Tidak Ditemukan", http.StatusNotFound)
 		return
 	}
 
@@ -138,7 +138,7 @@ func deleteAnimal(w http.ResponseWriter, r *http.Request) {
 
 	count, _ := res.RowsAffected()
 	if count == 0 {
-		http.Error(w, "Animal not found", http.StatusNotFound)
+		http.Error(w, "Hewan Tidak Ditemukan", http.StatusNotFound)
 		return
 	}
 
